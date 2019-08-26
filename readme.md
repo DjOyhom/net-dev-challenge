@@ -1,6 +1,4 @@
-For run the application in a windows enviroment, run app.bat in shell with administrator permission or app.sh in linux/mac enviroments.
-When you start this app at first time, you need to make a POST http request to http://localhost:5000/insertdata to generate example data.
-I recomend use POSTMAN to make http requests.
+For run the application you have to use this command docker-compose up.
 
 For list all product, you must to make a GET http request to http://localhost:5000/list.
 
