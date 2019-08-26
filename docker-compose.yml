@@ -1,0 +1,66 @@
+version: '3.7'
+
+services:
+
+  api-gdc:
+    build:
+      context: ./api-gdc
+      dockerfile: dockerfile
+    restart: always
+    ports:
+      - "5000:5050"
+    depends_on:
+      - db
+      - api-gdd
+      - mqservice
+    networks:
+      - dev
+
+  api-gdd:
+    build:
+      context: ./api-gdd
+      dockerfile: dockerfile
+    container_name: apigdd
+    ports:
+      - "3000:3000"
+    networks:
+      - dev
+    command: npm install
+    command: npm start
+
+  mqservice:
+    container_name: mqservice
+    image: rabbitmq
+    ports:
+      - "5672:5672"
+    networks:
+      - dev
+
+  mq:
+    build:
+      context: ./mq
+      dockerfile: dockerfile
+    restart: always
+    networks:
+      - dev
+
+  db:
+    container_name: mysql-gdc
+    image: mysql:8.0
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_DATABASE: gdc
+      MYSQL_USER: api
+      MYSQL_PASSWORD: api..gdc++19
+      MYSQL_ROOT_PASSWORD: 19+Enero+1998
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - dev
+
+volumes:
+  db-data:
+
+networks:
+  dev:
