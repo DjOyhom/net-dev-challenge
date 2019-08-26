@@ -1,4 +1,5 @@
 For run the application you have to use this command docker-compose up.
+Make a POST http request to http://localhost:5000/insertdata to generate random data.
 
 For list all product, you must to make a GET http request to http://localhost:5000/list.
 
